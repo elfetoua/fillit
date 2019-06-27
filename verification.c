@@ -6,7 +6,7 @@
 /*   By: elfetoua <elfetoua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/15 17:54:49 by elfetoua          #+#    #+#             */
-/*   Updated: 2019/06/19 21:00:24 by elfetoua         ###   ########.fr       */
+/*   Updated: 2019/06/27 05:58:11 by elfetoua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,13 @@ int		dashes_per_bloc(char *file)
 			dash_cnt = 0;
 			i = 0;
 		}
-		while (*line)
+		while (*lisne)
 		{
 			if (*line == '#')
 				dash_cnt++;
 			line++;
 		}
-		if (dash_cnt > 4)
+		if (dash_cnt != 4 && i == 4)
 		{
 			close(fd);
 			return (0);
@@ -59,7 +59,7 @@ int		verification(char *file)
 		return (0);
 	while (get_next_line(fd, &line))
 	{
-		if (ft_strlen(line) != 4 && i % 5 != 0)
+		if (ft_strlen(line) != 4 && i % 5 != 0)//oooooo
 			return (0);
 		j = 0;
 		while (line[j])
@@ -70,7 +70,7 @@ int		verification(char *file)
 		}
 		i++;
 	}
-	if ((i % 5) != 0)
+	if ((i % 5) != 0 || i > 130)
 		return (0);
 	close(fd);
 	if (!dashes_per_bloc(file))

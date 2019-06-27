@@ -1,20 +1,11 @@
-NAME = libft.a
-
-SRC= *.c
-
-OUT=$(SRC:.c=.o)
+NAME = fillit
 
 all: $(NAME)
 
-$(NAME): $(OUT)
-	@gcc -Wall -Wextra -Werror -c $(SRC)
-	@ar rc $(NAME) $(OUT)
-	@ranlib $(NAME)
+$(NAME):
+	@gcc -Wall -Wextra -Werror  fillit.c validation.c verification.c list.c get_next_line.c  types.c libft/libft.a -o $(NAME)
 
 clean:
-	@/bin/rm -f $(OUT)
-
-fclean:	clean
 	@/bin/rm -f $(NAME)
 
-re: fclean all
+re: clean all

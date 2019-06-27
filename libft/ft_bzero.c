@@ -1,36 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fillit.c                                           :+:      :+:    :+:   */
+/*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: elfetoua <elfetoua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/06/15 17:35:05 by elfetoua          #+#    #+#             */
-/*   Updated: 2019/06/27 05:45:27 by elfetoua         ###   ########.fr       */
+/*   Created: 2019/04/14 20:20:23 by elfetoua          #+#    #+#             */
+/*   Updated: 2019/04/15 18:19:02 by elfetoua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fillit.h"
+#include "libft.h"
 
-void	usage(void)
+void	ft_bzero(void *s, size_t n)
 {
-	write(1, "usage: ./fillit target_file\n", 28);
-}
+	char *p;
 
-int 			main(int argc, char **argv)
-{
-	int		i;
-	if (argc != 2)
-		usage();
-	else
+	p = (char *)s;
+	while (n)
 	{
-		i = 0;
-		if (verification(argv[1]))
-			if (validation(argv[1], i))
-				write(1, "0the file is valid", 18);
-			else
-				write(1, "the file isn't valid", 21);
-		else
-			write(1, "the file isn't valid", 21);
+		*p++ = 0;
+		n--;
 	}
 }

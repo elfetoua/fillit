@@ -1,36 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fillit.c                                           :+:      :+:    :+:   */
+/*   ft_bonus_btoi.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: elfetoua <elfetoua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/06/15 17:35:05 by elfetoua          #+#    #+#             */
-/*   Updated: 2019/06/27 05:45:27 by elfetoua         ###   ########.fr       */
+/*   Created: 2019/04/15 17:50:23 by elfetoua          #+#    #+#             */
+/*   Updated: 2019/04/15 18:25:28 by elfetoua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fillit.h"
+#include "libft.h"
 
-void	usage(void)
+static	int		ft_power(int nbr, int p)
 {
-	write(1, "usage: ./fillit target_file\n", 28);
+	if (p == 0)
+		return (1);
+	return (nbr * ft_power(nbr, p - 1));
 }
 
-int 			main(int argc, char **argv)
+int				ft_bonus_btoi(char *bi)
 {
-	int		i;
-	if (argc != 2)
-		usage();
-	else
+	int len;
+	int i;
+	int	val;
+
+	len = ft_strlen(bi);
+	val = 0;
+	i = 0;
+	while (bi[i] != '\0')
 	{
-		i = 0;
-		if (verification(argv[1]))
-			if (validation(argv[1], i))
-				write(1, "0the file is valid", 18);
-			else
-				write(1, "the file isn't valid", 21);
-		else
-			write(1, "the file isn't valid", 21);
+		if (bi[i] == '1')
+			val += ft_power(2, len - 1 - i);
+		i++;
 	}
+	return (val);
 }

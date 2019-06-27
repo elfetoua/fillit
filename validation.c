@@ -6,7 +6,7 @@
 /*   By: elfetoua <elfetoua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/16 20:44:57 by elfetoua          #+#    #+#             */
-/*   Updated: 2019/06/20 20:56:22 by elfetoua         ###   ########.fr       */
+/*   Updated: 2019/06/27 04:43:33 by elfetoua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	validation_part3(t_bloc *blc, int i, char *line)
 {
-	while (blc)
+	while (blc)/*kanparcouri la liste 7ta kanti7 f l'element li jdid 3ad kanbda n3emr fih */
 	{
 		if (blc->next == NULL)
 		{
@@ -27,7 +27,7 @@ void	validation_part3(t_bloc *blc, int i, char *line)
 	}
 }
 
-t_bloc	*validation_part2(int fd, t_bloc *head, t_bloc *blc, int i)
+t_bloc	*validation_part2(int fd, t_bloc *head, t_bloc *blc, int i)/*kola bloc kandirou f node ta3 list*/
 {
 	t_bloc	*new;
 	char	*line;
@@ -50,7 +50,7 @@ t_bloc	*validation_part2(int fd, t_bloc *head, t_bloc *blc, int i)
 	return (head);
 }
 
-void	validation(char *stream, int i)
+int		validation(char *stream, int i)
 {
 	int		fd;
 	t_bloc	*blc;
@@ -60,13 +60,15 @@ void	validation(char *stream, int i)
 	blc = nd_creat();
 	head = blc;
 	fd = open(stream, O_RDONLY);
-	//head = validation_part2(fd, head, blc, i);
-	printf("%s", head->fill[i++]);
-	while(head)
+	head = validation_part2(fd, head, blc, i);
+	if (!is_valid_form(head))
+		return (0);
+	while(head)/* fhad lwhile ghir kant2ked bli liste 3mrat bdakchi li bghit */
 	{
 		int		j = 0;
 		while(j < 4)
-			printf("%s", head->fill[j++]);
+			printf("%s\n", head->fill[j++]);
 		head = head->next;
 	}
+	return (1);
 }

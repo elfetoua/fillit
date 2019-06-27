@@ -1,36 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fillit.c                                           :+:      :+:    :+:   */
+/*   ft_bonus_wordlen.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: elfetoua <elfetoua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/06/15 17:35:05 by elfetoua          #+#    #+#             */
-/*   Updated: 2019/06/27 05:45:27 by elfetoua         ###   ########.fr       */
+/*   Created: 2019/04/16 18:14:01 by elfetoua          #+#    #+#             */
+/*   Updated: 2019/04/16 18:14:52 by elfetoua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fillit.h"
+#include "libft.h"
 
-void	usage(void)
+int		ft_bonus_wordlen(char const *str, char c)
 {
-	write(1, "usage: ./fillit target_file\n", 28);
-}
+	int	i;
+	int	len;
 
-int 			main(int argc, char **argv)
-{
-	int		i;
-	if (argc != 2)
-		usage();
-	else
+	i = 0;
+	len = 0;
+	while (str[i] == c)
+		i++;
+	while (str[i] != c && str[i] != '\0')
 	{
-		i = 0;
-		if (verification(argv[1]))
-			if (validation(argv[1], i))
-				write(1, "0the file is valid", 18);
-			else
-				write(1, "the file isn't valid", 21);
-		else
-			write(1, "the file isn't valid", 21);
+		i++;
+		len++;
 	}
+	return (len);
 }

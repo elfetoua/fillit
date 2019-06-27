@@ -1,36 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fillit.c                                           :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: elfetoua <elfetoua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/06/15 17:35:05 by elfetoua          #+#    #+#             */
-/*   Updated: 2019/06/27 05:45:27 by elfetoua         ###   ########.fr       */
+/*   Created: 2019/04/14 21:23:36 by elfetoua          #+#    #+#             */
+/*   Updated: 2019/04/16 19:01:41 by elfetoua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fillit.h"
+#include "libft.h"
 
-void	usage(void)
-{
-	write(1, "usage: ./fillit target_file\n", 28);
-}
-
-int 			main(int argc, char **argv)
+char		*ft_strjoin(char const *s1, char const *s2)
 {
 	int		i;
-	if (argc != 2)
-		usage();
-	else
-	{
-		i = 0;
-		if (verification(argv[1]))
-			if (validation(argv[1], i))
-				write(1, "0the file is valid", 18);
-			else
-				write(1, "the file isn't valid", 21);
-		else
-			write(1, "the file isn't valid", 21);
-	}
+	int		j;
+	char	*s1_2;
+
+	if (!s1 || !s2)
+		return (NULL);
+	j = 0;
+	i = ft_strlen((char *)s1);
+	while (s2[j++] != '\0')
+		i++;
+	if (!(s1_2 = (char *)malloc(i + 1)))
+		return (NULL);
+	s1_2 = ft_strcpy(s1_2, s1);
+	s1_2 = ft_strcat(s1_2, s2);
+	return (s1_2);
 }
